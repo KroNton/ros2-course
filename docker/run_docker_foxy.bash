@@ -1,8 +1,4 @@
-# If not working, first do: sudo rm -rf /tmp/.docker.xauth
-# It still not working, try running the script as root.
-## Build the image first
-### docker build -t r2_path_planning .
-## then run this script
+
 xhost local:root
 
 
@@ -10,7 +6,7 @@ XAUTH=/tmp/.docker.xauth
 
 
 docker run -it \
-    --name=ros2_foxy_con \
+    --name=ros2_foxy_cont \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
@@ -18,7 +14,8 @@ docker run -it \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
     --privileged \
-    archerobotic/arche:ros2-foxy-desktop-full-v0.2 \
+    -v ~/ros2_ws/src:/arche_ws/src/ \
+    archerobotic/arche:ros2-foxy-desktop-full-v0.6 \
     bash
 
 echo "Done."
