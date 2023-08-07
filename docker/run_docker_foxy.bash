@@ -14,8 +14,8 @@ docker run -it \
     --volume="$XAUTH:$XAUTH" \
     --net=host \
     --privileged \
-    -v ~/ros2_ws/:/arche_ws/ \
-    archerobotic/arche:ros2-foxy-desktop-full-v0.8 \
+    -v ~/ros2_ws/:/ros2_ws/ \
+    kronton/ros2-foxy-desktop-full:v1.0 \
     bash
 
 echo "Done."
