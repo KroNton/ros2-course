@@ -14,8 +14,7 @@ public:
   : Node("simple_publisher"), count_(0)
   {
     publisher_ = this->create_publisher<std_msgs::msg::Int32>("counter", 10);
-    timer_ = this->create_wall_timer(
-      500ms, std::bind(&SimplePublisher::timer_callback, this));
+    timer_ = this->create_wall_timer(500ms, std::bind(&SimplePublisher::timer_callback, this));
   }
 
 private:
