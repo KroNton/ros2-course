@@ -20,6 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED) # This is the package that contains the custom interface
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -45,11 +46,15 @@ ament_target_dependencies(simple_topic_publisher_composable_node rclcpp std_msgs
 add_executable(move_robot src/move_robot.cpp)
 ament_target_dependencies(move_robot rclcpp std_msgs geometry_msgs)
 
+add_executable(age_publisher_node src/publish_age.cpp)
+ament_target_dependencies(age_publisher_node rclcpp std_msgs custom_interfaces) # Note that we are also adding the package which contains the custom interface as a dependency of the node that will be using this custom interface
+
 
 install(TARGETS
    simple_publisher_node
    simple_topic_publisher_composable_node
    move_robot
+   age_publisher_node
    DESTINATION lib/${PROJECT_NAME}
  )
 
