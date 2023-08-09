@@ -12,9 +12,8 @@ int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
 
-  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("service_client");
-  rclcpp::Client<std_srvs::srv::Empty>::SharedPtr client =
-    node->create_client<std_srvs::srv::Empty>("moving");
+  std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("stop_client");
+  rclcpp::Client<std_srvs::srv::Empty>::SharedPtr client =node->create_client<std_srvs::srv::Empty>("stop");
 
   auto request = std::make_shared<std_srvs::srv::Empty::Request>();
 
@@ -32,9 +31,9 @@ int main(int argc, char **argv)
     rclcpp::FutureReturnCode::SUCCESS)
   {
     auto result = result_future.get();
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "The robot is moving");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "The robot stoped");
   } else {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service /moving");
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service /stop");
   }
 
   rclcpp::shutdown();
