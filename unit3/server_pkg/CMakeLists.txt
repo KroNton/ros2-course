@@ -19,6 +19,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_srvs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -30,5 +32,22 @@ if(BUILD_TESTING)
   #set(ament_cmake_cpplint_FOUND TRUE)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+add_executable(move_server_node src/move_server.cpp)
+ament_target_dependencies(move_server_node rclcpp std_msgs geometry_msgs std_srvs)
+
+add_executable(stop_server_node src/stop_server.cpp)
+ament_target_dependencies(stop_server_node rclcpp std_msgs geometry_msgs std_srvs)
+
+install(TARGETS
+   move_server_node
+   stop_server_node
+   DESTINATION lib/${PROJECT_NAME}
+ )
+
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/)
+
 
 ament_package()
