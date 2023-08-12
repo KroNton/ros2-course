@@ -33,4 +33,22 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+
+
+
+add_executable(action_server_node src/action_server.cpp)
+ament_target_dependencies(action_server_node rclcpp rclcpp_action t3_action_msg geometry_msgs)
+
+install(TARGETS
+   action_server_node
+   DESTINATION lib/${PROJECT_NAME}
+ )
+
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
+)
+
+
 ament_package()
