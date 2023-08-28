@@ -3,7 +3,7 @@ xhost local:root
 
 
 XAUTH=/tmp/.docker.xauth
-
+docker rm ros2_foxy_cont
 
 docker run -it \
     --name=ros2_foxy_cont \
@@ -15,7 +15,7 @@ docker run -it \
     --net=host \
     --privileged \
     -v ~/ros2_ws/:/ros2_ws/ \
-    kronton/ros2-foxy-desktop-full:v1.0 \
+    kronton/ros2-foxy-desktop-full:v1.5 \
     bash
 
 echo "Done."
