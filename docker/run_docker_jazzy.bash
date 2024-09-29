@@ -6,7 +6,7 @@ XAUTH=/tmp/.docker.xauth
 docker rm ros2_gazzy_cont
 
 docker run -it \
-    --name=ros2_humble_cont \
+    --name=ros2_gazzy_cont \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
