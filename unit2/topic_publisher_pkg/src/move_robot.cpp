@@ -14,7 +14,7 @@ public:
   MoveRobot()
   : Node("robot_move")
   {
-    publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/turtle1/cmd_vel", 10);
+    publisher_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
     timer_ = this->create_wall_timer(500ms, std::bind(&MoveRobot::timer_callback, this));
   }
 
