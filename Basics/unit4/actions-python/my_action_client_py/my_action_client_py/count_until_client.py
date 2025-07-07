@@ -6,6 +6,7 @@ from rclpy.action import ActionClient
 from my_action_interfaces.action import CountUntil
 from rclpy.action.client import ClientGoalHandle
 class CountUntilClientNode(Node): 
+    
     def __init__(self):
         super().__init__("count_until_client_node")
         self.count_until_client_=ActionClient(self,CountUntil,"count_until")
@@ -36,7 +37,7 @@ class CountUntilClientNode(Node):
     
     def get_result_callback(self,future):
         result = future.result().result
-        self.get_logger().info('Goal result' + str(result.reached_number) )
+        self.get_logger().info('Goal result: ' + str(result.reached_number) )
         
 
 def main(args=None):
